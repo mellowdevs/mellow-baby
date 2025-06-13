@@ -4,9 +4,9 @@ Mellow Baby is a modern full-stack web application designed to help new parents 
 
 ## ✨ Features
 
-- **🍼 Feeding Tracking:** Log breastfeeding (duration, active side) and bottle-feeding (amount, type) sessions.
-- **💤 Sleep Tracking:** Track sleep cycles (start, end) and automatically calculate the total sleep duration.
-- **🚼 Diaper Change Tracking:** Practical and quick logging for wet, dirty, or mixed diaper changes.
+- **🍼 Feeding Tracking:** Log breastfeeding (duration, side) and bottle-feeding (amount, type) sessions.
+- **💤 Sleep Tracking:** Track sleep cycles (start, end) and automatically calculate total sleep duration.
+- **🚼 Diaper Change Tracking:** Quick logging for wet, dirty, or mixed diaper changes.
 - **📊 Statistics Dashboard:** Interactive charts and data visualizations for daily, weekly, and monthly summaries.
 - **👤 User Accounts:** Securely store and manage data with personal accounts (Authentication via JWT).
 - **⏰ Live Timers:** Real-time timers for tracking breastfeeding and sleep sessions.
@@ -15,33 +15,26 @@ Mellow Baby is a modern full-stack web application designed to help new parents 
 
 This project is developed within a **Monorepo** structure using modern and scalable technologies.
 
-- **Frontend:**
-  - **Angular (v19)**: A powerful and structured frontend framework.
-  - **PrimeNG**: For a rich set of professional UI components.
-  - **Tailwind CSS**: For rapid and flexible styling.
+- **Frontend:** Angular (v19), PrimeNG, Tailwind CSS
+- **Backend:** NestJS, Node.js
+- **Database:** MongoDB (with Mongoose)
+- **Authentication:** JWT (JSON Web Tokens)
+- **API Documentation:** Swagger (OpenAPI)
 
-- **Backend:**
-  - **NestJS**: A modern framework for building efficient and scalable Node.js server-side applications (The Angular of Backend).
-  - **Node.js**: JavaScript runtime environment.
+## 📖 API Documentation (Swagger)
 
-- **Database:**
-  - **MongoDB**: A flexible, document-based NoSQL database.
-  - **Mongoose**: An elegant object modeling tool for MongoDB.
+The API is documented using Swagger. Once the backend server is running, you can view and interact with the live, auto-generated API documentation at:
 
-- **Authentication:**
-  - **JWT (JSON Web Tokens)**: A secure and stateless standard for authentication.
+[**http://localhost:3000/api-docs**](http://localhost:3000/api-docs)
 
-## 📂 Project Structure
+## Endpoints
 
-The project houses two separate applications within a single repository:
+The following API endpoints are currently available:
 
-```
-mellow-baby/
-├── apps/
-│   ├── api/          # NestJS Backend Project
-│   └── frontend/     # Angular Frontend Project
-└── README.md
-```
+| Endpoint      | Method | Description                                                                                             | Payload / Response                                                                                                   |
+| :------------ | :----- | :------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------- |
+| `/users`      | `POST` | Creates a new user (Register). Checks for duplicate emails. Hashes the password before saving.           | **Body:** `{ "name": "string", "email": "string", "password": "string" }` <br/> **Returns:** The created user object. |
+| `/auth/login` | `POST` | Authenticates a user with email and password. Returns a JSON Web Token (JWT) upon successful validation. | **Body:** `{ "email": "string", "password": "string" }` <br/> **Returns:** `{ "access_token": "string" }`           |
 
 ## 🚀 Getting Started / Local Setup
 
@@ -52,7 +45,7 @@ Follow the steps below to run the project on your local machine.
 - [Node.js](https://nodejs.org/) (LTS version recommended)
 - [npm](https://www.npmjs.com/)
 - [Angular CLI](https://angular.dev/cli) (v19)
-- [MongoDB](https://www.mongodb.com/try/download/community)
+- [MongoDB](https://www.mongodb.com/try/download/community) (A local instance or a free [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) cluster)
 
 ### Installation
 
@@ -61,14 +54,22 @@ Follow the steps below to run the project on your local machine.
     git clone [https://github.com/](https://github.com/)[YOUR-USERNAME]/mellow-baby.git
     cd mellow-baby
     ```
+2.  **Configure Environment Variables (Backend):**
+    Before running the backend, you must set up your environment variables.
+    - In the `apps/api` directory, create a new file named `.env`.
+    - Add the following variables, replacing the placeholder values with your own:
+      ```env
+      DATABASE_URL=YOUR_MONGODB_ATLAS_CONNECTION_STRING
+      JWT_SECRET=YOUR_SUPER_SECRET_FOR_JWT_SIGNING
+      ```
 
-2.  **Install backend dependencies:**
+3.  **Install backend dependencies:**
     ```bash
     cd apps/api
     npm install
     ```
 
-3.  **Install frontend dependencies:**
+4.  **Install frontend dependencies:**
     ```bash
     cd ../frontend
     npm install
@@ -90,7 +91,7 @@ You will need two separate terminals to run the application.
     ```bash
     ng serve
     ```
-    The frontend application will start running at `http://localhost:4200`. Open this address in your browser.
+    The frontend application will start running at `http://localhost:4200`.
 
 ## 📄 License
 
