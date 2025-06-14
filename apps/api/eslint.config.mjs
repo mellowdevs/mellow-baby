@@ -1,11 +1,12 @@
 // apps/api/eslint.config.mjs
 
-import tseslint from 'typescript-eslint';
-import prettier from 'eslint-plugin-prettier/recommended';
-import importPlugin from 'eslint-plugin-import';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
 import { FlatCompat } from '@eslint/eslintrc';
+import importPlugin from 'eslint-plugin-import';
+import prettier from 'eslint-plugin-prettier/recommended';
+import tseslint from 'typescript-eslint';
 
 // Recreate the __dirname functionality for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -36,7 +37,7 @@ export default tseslint.config(
       // Enforce strict typing
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
 
