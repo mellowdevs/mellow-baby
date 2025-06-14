@@ -13,6 +13,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './schemas/user.schema';
 import { UsersService } from './users.service';
 
 @ApiTags('users')
@@ -25,7 +26,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Create a new user in DB.' })
   @ApiResponse({ status: 200, description: 'User created succesfully' })
   @ApiResponse({ status: 409, description: 'Conflict. A user with this email already exists.' })
-  create(@Body() createUserDto: CreateUserDto) {
+  create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.create(createUserDto);
   }
 
