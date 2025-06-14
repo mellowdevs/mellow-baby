@@ -1,0 +1,60 @@
+<div class="flex flex-col h-full text-surface-700 dark:text-surface-200">
+  
+  <div class="p-4 flex-shrink-0">
+    <h1 class="text-2xl font-bold text-primary">mellow-baby</h1>
+  </div>
+
+  <div class="p-2 flex-grow overflow-y-auto">
+    <span class="p-2 text-sm font-semibold text-surface-500">NAVIGATION</span>
+    <ul class="flex flex-col gap-1 mt-2">
+      <li>
+        <a routerLink="/dashboard" class="flex items-center p-3 rounded-md hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors duration-200">
+          <i class="pi pi-home mr-3 text-lg"></i>
+          <span class="font-medium">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/reports" class="flex items-center p-3 rounded-md hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors duration-200">
+          <i class="pi pi-chart-bar mr-3 text-lg"></i>
+          <span class="font-medium">Reports</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="p-4 mt-auto flex-shrink-0 ">
+<div class="flex justify-between items-end">
+
+
+      <p-speeddial [model]="languageMenuItems" direction="up" [transitionDelay]="80">
+        <ng-template #button let-toggleCallback="toggleCallback">
+            <p-button text (click)="toggleCallback($event)">
+                     <div class="flex items-center gap-2 px-1">
+            <span class="fi fi-{{ currentLanguage.flag }} text-lg"></span>
+    
+          </div>
+            </p-button>
+        </ng-template>
+        <ng-template #item let-item let-toggleCallback="toggleCallback">
+            <div
+                class="flex flex-col items-center justify-between gap-2 p-2  w-20 cursor-pointer"
+                (click)="toggleCallback($event, item)"
+            >
+                <span [class]="item.icon"></span>
+                <span>
+                    {{ item.label }}
+                </span>
+            </div>
+        </ng-template>
+      </p-speeddial>
+
+            <p-button 
+        (click)="toggleDarkMode()"
+        [icon]="(themeService.isThemeDark$ | async) ? 'pi pi-sun' : 'pi pi-moon'"
+        styleClass="p-button-text p-button-rounded"
+        aria-label="Toggle Theme">
+      </p-button>
+
+    </div>
+  </div>
+</div>
