@@ -9,6 +9,6 @@
         (input)="onInputChange($event)"
         (blur)="onTouched()"
         class="w-full"/>
-        <label [for]="id" class="font-semibold mb-2">{{ label }}</label>
+<label [for]="id" class="font-semibold mb-2">{{ label | transloco }}</label>
     </p-floatlabel>
   </div>

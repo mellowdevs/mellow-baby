@@ -7,11 +7,21 @@ import { CardModule } from 'primeng/card';
 import { DynamicFormComponent } from '../../shared/components/dynamic-form/dynamic-form.component';
 import { FormItem } from '../../shared/models/form-item.model';
 import { AuthService } from '../../core/auth/auth.service';
+import { RouterLink } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule, CardModule, DynamicFormComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    CardModule,
+    DynamicFormComponent,
+    RouterLink,
+    TranslocoModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -31,13 +41,13 @@ export class LoginComponent {
     this.loginFormItems = [
       {
         controlName: 'email',
-        label: 'Email',
+        label: 'loginPage.emailLabel',
         type: 'email',
         id: 'login-email',
       },
       {
         controlName: 'password',
-        label: 'Password',
+        label: 'loginPage.passwordLabel',
         type: 'password',
         id: 'login-password',
       },

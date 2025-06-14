@@ -1,6 +1,6 @@
 <div class="flex justify-center items-center h-screen">
-  <p-card header="Register to Mellow Baby" styleClass="w-full max-w-md">
-
+  <p-card [header]="'registerPage.header' | transloco" styleClass="w-full max-w-md">
+    
     <app-dynamic-form
       [form]="registerForm"
       [formItems]="registerFormItems">
@@ -8,10 +8,18 @@
 
     <div class="mt-6">
       <p-button
-        label="Register"
+        [label]="'registerPage.registerButton' | transloco"
         (click)="onSubmit()"
         [disabled]="registerForm.invalid"
         styleClass="w-full">
       </p-button>
     </div>
+    
+    <ng-template pTemplate="footer">
+      <div class="text-center mt-4">
+        <span>{{ 'registerPage.loginPrompt' | transloco }} </span>
+        <a routerLink="/login" class="font-semibold text-primary hover:underline">{{ 'registerPage.loginLink' | transloco }}</a>
+      </div>
+    </ng-template>
   </p-card>
+</div>

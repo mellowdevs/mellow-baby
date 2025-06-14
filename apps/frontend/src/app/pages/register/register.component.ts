@@ -6,10 +6,21 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DynamicFormComponent } from '../../shared/components/dynamic-form/dynamic-form.component';
+import { TranslocoModule } from '@ngneat/transloco';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule, CardModule, DynamicFormComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    CardModule,
+    DynamicFormComponent,
+    RouterLink,
+    TranslocoModule,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
@@ -30,19 +41,19 @@ export class RegisterComponent {
     this.registerFormItems = [
       {
         controlName: 'name',
-        label: 'Name',
+        label: 'registerPage.nameLabel',
         type: 'text',
         id: 'register-name',
       },
       {
         controlName: 'email',
-        label: 'Email',
+        label: 'registerPage.emailLabel',
         type: 'email',
         id: 'register-email',
       },
       {
         controlName: 'password',
-        label: 'Password',
+        label: 'registerPage.passwordLabel',
         type: 'password',
         id: 'register-password',
       },
