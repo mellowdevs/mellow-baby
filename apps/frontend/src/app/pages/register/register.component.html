@@ -1,1 +1,17 @@
-<p>register works!</p>
+<div class="flex justify-center items-center h-screen">
+  <p-card header="Register to Mellow Baby" styleClass="w-full max-w-md">
+
+    <app-dynamic-form
+      [form]="registerForm"
+      [formItems]="registerFormItems">
+    </app-dynamic-form>
+
+    <div class="mt-6">
+      <p-button
+        label="Register"
+        (click)="onSubmit()"
+        [disabled]="registerForm.invalid"
+        styleClass="w-full">
+      </p-button>
+    </div>
+  </p-card>
