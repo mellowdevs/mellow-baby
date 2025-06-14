@@ -1,13 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DynamicFormComponent } from '../../shared/components/dynamic-form/dynamic-form.component';
 import { FormItem } from '../../shared/models/form-item.model';
 import { AuthService } from '../../core/auth/auth.service';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
@@ -43,6 +42,7 @@ export class LoginComponent {
         controlName: 'email',
         label: 'loginPage.emailLabel',
         type: 'email',
+
         id: 'login-email',
       },
       {
