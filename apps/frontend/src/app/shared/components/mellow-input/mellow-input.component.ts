@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TranslocoModule } from '@ngneat/transloco';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -13,7 +14,7 @@ let nextId = 0; // A simple counter to ensure unique IDs
  */
 @Component({
   selector: 'app-mellow-input',
-  imports: [CommonModule, FormsModule, InputTextModule, FloatLabelModule],
+  imports: [CommonModule, FormsModule, InputTextModule, FloatLabelModule, TranslocoModule],
   templateUrl: './mellow-input.component.html',
   styleUrl: './mellow-input.component.scss',
   providers: [

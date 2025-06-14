@@ -1,0 +1,19 @@
+{
+  "loginPage": {
+    "header": "Bei Mellow Baby Anmelden",
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "loginButton": "Anmelden",
+    "registerPrompt": "Noch kein Konto?",
+    "registerLink": "Hier registrieren"
+  },
+  "registerPage": {
+    "header": "Konto Erstellen",
+    "nameLabel": "Name",
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "registerButton": "Konto Erstellen",
+    "loginPrompt": "Bereits ein Konto?",
+    "loginLink": "Hier anmelden"
+  }
+}

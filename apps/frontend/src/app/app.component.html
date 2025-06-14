@@ -6,6 +6,28 @@
     styleClass="p-button-rounded p-button-text"
     aria-label="Toggle Theme">
   </p-button>
+  <div class="flex items-center gap-2">
+<p-dropdown
+    [options]="languages"
+    [ngModel]="translocoService.getActiveLang()"
+    (onChange)="changeLang($event.value)"
+    optionLabel="name"
+    optionValue="code"
+    styleClass="w-32 md:w-40">
+    <ng-template let-option pTemplate="selectedItem">
+      <div class="flex items-center gap-2">
+        <span class="fi fi-{{ option.flag }} text-lg"></span>
+        <span class="hidden md:inline">{{ option.name }}</span>
+      </div>
+    </ng-template>
+    <ng-template let-option pTemplate="item">
+      <div class="flex items-center gap-2">
+        <span class="fi fi-{{ option.flag }} text-lg"></span>
+        <span>{{ option.name }}</span>
+      </div>
+    </ng-template>
+  </p-dropdown>
+</div>
 
   </div>
 

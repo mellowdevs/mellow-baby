@@ -1,0 +1,19 @@
+{
+  "loginPage": {
+    "header": "Mellow Baby'ye Giriş Yap",
+    "emailLabel": "E-posta",
+    "passwordLabel": "Şifre",
+    "loginButton": "Giriş Yap",
+    "registerPrompt": "Hesabın yok mu?",
+    "registerLink": "Buradan kaydol"
+  },
+  "registerPage": {
+    "header": "Hesap Oluştur",
+    "nameLabel": "İsim",
+    "emailLabel": "E-posta",
+    "passwordLabel": "Şifre",
+    "registerButton": "Hesap Oluştur",
+    "loginPrompt": "Zaten bir hesabın var mı?",
+    "loginLink": "Giriş yap"
+  }
+}
