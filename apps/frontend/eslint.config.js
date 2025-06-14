@@ -35,6 +35,21 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'import/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
+          pathGroups: [
+            {
+              pattern: '@/**',
+              group: 'internal',
+            },
+          ],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
+      'import/no-unresolved': 'off', // This is handled by TypeScript
     },
   },
   {
