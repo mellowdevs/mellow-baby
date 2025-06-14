@@ -1,0 +1,13 @@
+<div class="flex justify-center items-center h-screen bg-gray-100">
+  <p-card header="Login to Mellow Baby" styleClass="w-full max-w-md">
+   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col gap-6 p-fluid">
+<p-floatlabel variant="on">
+                <input pInputText id="email" formControlName="email" aria-describedby="email-help" />
+                <label for="email">Email</label>
+</p-floatlabel>
+        </div>
+   </form>
+  </p-card>
+</div>
+

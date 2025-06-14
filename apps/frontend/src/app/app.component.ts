@@ -1,14 +1,21 @@
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Component } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { ThemeService } from './theme/theme.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, ButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'frontend';
+  // inject() is a modern and clean way to get services
+  themeService = inject(ThemeService);
 
-  test = 6;
+  toggleDarkMode() {
+    this.themeService.toggleTheme();
+  }
 }
