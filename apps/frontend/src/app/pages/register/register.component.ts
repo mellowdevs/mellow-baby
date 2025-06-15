@@ -71,7 +71,7 @@ export class RegisterComponent {
         component: 'password',
         validationMessages: {
           required: 'form.errors.required',
-          pattern: 'form.errors.strongerPassword',
+          pattern: 'form.errors.passwordMessage',
         },
       },
     ];

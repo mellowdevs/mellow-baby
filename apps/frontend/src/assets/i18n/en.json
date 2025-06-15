@@ -18,15 +18,25 @@
   },
   "form": {
     "labels": {
-      "weakLabel": "Weak complexity",
-      "mediumLabel": "Average complexity",
-      "strongLabel": "Good password",
+      "weakLabel": "Weak",
+      "mediumLabel": "Medium",
+      "strongLabel": "Strong",
       "promptLabel": "Enter a password",
-      "passwordMessage": "1 lowercase, 1uppercase and atleast 6 char"
+      "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number."
     },
     "errors": {
       "required": "This field is required.",
-      "emailInvalid": "Please enter a valid email address."
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordInvalid": "Password is not strong enough.",
+      "passwordMustContainNumber": "Password must contain at least one number.",
+      "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number."
+   
     }
+  },
+  "primeng": {
+    "weak": "Weak",
+    "medium": "Medium",
+    "strong": "Strong",
+    "passwordPrompt": "Enter a password"
   }
 }
