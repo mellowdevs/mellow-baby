@@ -3,4 +3,5 @@ export interface FormItem {
   label: string;
   type: 'text' | 'password' | 'email' | 'number' | 'textarea';
   id?: string;
+  validationMessages?: { [key: string]: string };
 }

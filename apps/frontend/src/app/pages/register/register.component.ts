@@ -43,19 +43,26 @@ export class RegisterComponent {
         controlName: 'name',
         label: 'registerPage.nameLabel',
         type: 'text',
-        id: 'register-name',
+        validationMessages: {
+          required: 'form.errors.required',
+        },
       },
       {
         controlName: 'email',
         label: 'registerPage.emailLabel',
         type: 'email',
-        id: 'register-email',
+        validationMessages: {
+          required: 'form.errors.required',
+          email: 'form.errors.emailInvalid',
+        },
       },
       {
         controlName: 'password',
         label: 'registerPage.passwordLabel',
         type: 'password',
-        id: 'register-password',
+        validationMessages: {
+          required: 'form.errors.required',
+        },
       },
     ];
   }

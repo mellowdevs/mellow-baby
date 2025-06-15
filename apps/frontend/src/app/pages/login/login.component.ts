@@ -42,14 +42,20 @@ export class LoginComponent {
         controlName: 'email',
         label: 'loginPage.emailLabel',
         type: 'email',
-
         id: 'login-email',
+        validationMessages: {
+          required: 'form.errors.required',
+          email: 'form.errors.emailInvalid',
+        },
       },
       {
         controlName: 'password',
         label: 'loginPage.passwordLabel',
         type: 'password',
         id: 'login-password',
+        validationMessages: {
+          required: 'form.errors.required',
+        },
       },
     ];
   }

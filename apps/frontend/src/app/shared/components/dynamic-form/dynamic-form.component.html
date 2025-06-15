@@ -1,9 +1,11 @@
 <form [formGroup]="form" class="flex flex-col gap-6 p-fluid">
   <div *ngFor="let item of formItems">
     <app-mellow-input
-      [label]="item.label"
-      [formControlName]="item.controlName"
+      [label]="item.label | transloco"
       [type]="item.type"
       [id]="item.id ?? item.controlName"
-    ></app-mellow-input> </div>
+      [validationMessages]="item.validationMessages ?? {}"
+      [control]="getFormControl(item.controlName)!"
+    ></app-mellow-input>
+  </div>
 </form>
