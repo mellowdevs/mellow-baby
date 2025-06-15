@@ -1,6 +1,8 @@
 <div class="flex flex-col">
   <p-floatlabel variant="on">
-    <input
+        <ng-container [ngSwitch]="component" [formGroup]="fg">
+
+    <input *ngSwitchDefault
       pInputText
       [id]="id"
       [type]="type"
@@ -8,14 +10,30 @@
       [class.p-invalid]="control.invalid && control.touched"
       class="w-full"
     />
+
+      <p-password *ngSwitchCase="'password'" 
+          [class]="control.invalid ? ' invalid' : 'w-full'"
+          [id]="id"
+          [formControlName]="controlName"
+          [formControl]="control"
+          [toggleMask]="true"
+          [weakLabel]="'form.labels.weakLabel' | transloco"
+          [mediumLabel]="'form.labels.mediumLabel' | transloco"
+          [strongLabel]="'form.labels.strongLabel' | transloco"
+          [promptLabel]="'form.labels.promptLabel' | transloco"
+          [inputStyleClass]="control.invalid && control.touched ? 'w-full p-invalid' :  'w-full'"
+          [styleClass]="'w-full'"
+        ></p-password>
     <label [for]="id">{{ label | transloco }}</label>
+        </ng-container>
+
   </p-floatlabel>
 
   <div class="mt-1 h-4" *ngIf="control.invalid && control.touched">
     <small class="p-error">
       <ng-container *ngFor="let msg of validationMessages | keyvalue">
         <span *ngIf="control.hasError(msg.key)">
-          {{ msg.value | transloco }}
+          {{ msg.key }}
         </span>
       </ng-container>
     </small>

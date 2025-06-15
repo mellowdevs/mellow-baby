@@ -4,4 +4,5 @@ export interface FormItem {
   type: 'text' | 'password' | 'email' | 'number' | 'textarea';
   id?: string;
   validationMessages?: { [key: string]: string };
+  component?: 'input' | 'password';
 }

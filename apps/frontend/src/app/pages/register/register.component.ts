@@ -35,7 +35,15 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/,
+          ),
+        ],
+      ],
     });
 
     this.registerFormItems = [
@@ -60,8 +68,10 @@ export class RegisterComponent {
         controlName: 'password',
         label: 'registerPage.passwordLabel',
         type: 'password',
+        component: 'password',
         validationMessages: {
           required: 'form.errors.required',
+          pattern: 'form.errors.strongerPassword',
         },
       },
     ];
