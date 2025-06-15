@@ -17,9 +17,26 @@
     "loginLink": "Hier anmelden"
   },
   "form": {
-  "errors": {
-    "required": "Dieses Feld ist erforderlich.",
-    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+    "labels": {
+      "weakLabel": "Schwach",
+      "mediumLabel": "Mittel",
+      "strongLabel": "Stark",
+      "promptLabel": "Geben Sie ein Passwort ein",
+      "passwordMessage": "Das Passwort muss mindestens einen Großbuchstaben, einen Kleinbuchstaben und eine Zahl enthalten."
+    },
+    "errors": {
+      "required": "Dieses Feld ist erforderlich.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "passwordInvalid": "Das Passwort ist nicht stark genug.",
+      "passwordMustContainNumber": "Das Passwort muss mindestens eine Zahl enthalten.", 
+      "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number."
+   
+    }
+  },
+  "primeng": {
+    "weak": "Schwach",
+    "medium": "Mittel",
+    "strong": "Stark",
+    "passwordPrompt": "Geben Sie ein Passwort ein"
   }
-}
 }

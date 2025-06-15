@@ -1,3 +1,4 @@
+
 <div class="flex flex-col">
   <p-floatlabel variant="on">
         <ng-container [ngSwitch]="component" [formGroup]="fg">
@@ -29,11 +30,11 @@
 
   </p-floatlabel>
 
-  <div class="mt-1 h-4" *ngIf="control.invalid && control.touched">
+  <div class="mt-1 mb-1" *ngIf="control.invalid && control.touched">
     <small class="p-error">
       <ng-container *ngFor="let msg of validationMessages | keyvalue">
         <span *ngIf="control.hasError(msg.key)">
-          {{ msg.key }}
+          {{ msg.value | transloco }}
         </span>
       </ng-container>
     </small>

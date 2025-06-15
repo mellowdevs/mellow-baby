@@ -17,9 +17,25 @@
     "loginLink": "Giriş yap"
   },
   "form": {
-  "errors": {
-    "required": "Bu alan zorunludur.",
-    "emailInvalid": "Lütfen geçerli bir e-posta adresi girin."
+    "labels": {
+      "weakLabel": "Zayıf",
+      "mediumLabel": "Orta",
+      "strongLabel": "Güçlü",
+      "promptLabel": "Bir şifre girin",
+      "passwordMessage": "Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir."
+    },
+    "errors": {
+      "required": "Bu alan zorunludur.",
+      "emailInvalid": "Lütfen geçerli bir e-posta adresi girin.",
+      "passwordInvalid": "Şifre yeterince güçlü değil.",
+      "passwordMustContainNumber": "Şifre en az bir rakam içermelidir.",
+      "passwordMessage": "Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir."
+    }
+  },
+  "primeng": {
+    "weak": "Zayıf",
+    "medium": "Orta",
+    "strong": "Güçlü",
+    "passwordPrompt": "Bir şifre girin"
   }
-}
 }
