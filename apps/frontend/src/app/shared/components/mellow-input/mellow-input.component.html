@@ -1,14 +1,23 @@
 <div class="flex flex-col">
-    <p-floatlabel variant="on">
-        <input 
-        pInputText 
-        [id]="id" 
-        [type]="type" 
-        [value]="value"
-        [disabled]="isDisabled"
-        (input)="onInputChange($event)"
-        (blur)="onTouched()"
-        class="w-full"/>
-<label [for]="id" class="font-semibold mb-2">{{ label | transloco }}</label>
-    </p-floatlabel>
+  <p-floatlabel variant="on">
+    <input
+      pInputText
+      [id]="id"
+      [type]="type"
+      [formControl]="control"
+      [class.p-invalid]="control.invalid && control.touched"
+      class="w-full"
+    />
+    <label [for]="id">{{ label | transloco }}</label>
+  </p-floatlabel>
+
+  <div class="mt-1 h-4" *ngIf="control.invalid && control.touched">
+    <small class="p-error">
+      <ng-container *ngFor="let msg of validationMessages | keyvalue">
+        <span *ngIf="control.hasError(msg.key)">
+          {{ msg.value | transloco }}
+        </span>
+      </ng-container>
+    </small>
   </div>
+</div>

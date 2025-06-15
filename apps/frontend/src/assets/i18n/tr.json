@@ -15,5 +15,11 @@
     "registerButton": "Hesap Oluştur",
     "loginPrompt": "Zaten bir hesabın var mı?",
     "loginLink": "Giriş yap"
+  },
+  "form": {
+  "errors": {
+    "required": "Bu alan zorunludur.",
+    "emailInvalid": "Lütfen geçerli bir e-posta adresi girin."
   }
+}
 }

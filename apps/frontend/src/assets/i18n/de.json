@@ -15,5 +15,11 @@
     "registerButton": "Konto Erstellen",
     "loginPrompt": "Bereits ein Konto?",
     "loginLink": "Hier anmelden"
+  },
+  "form": {
+  "errors": {
+    "required": "Dieses Feld ist erforderlich.",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
   }
+}
 }
