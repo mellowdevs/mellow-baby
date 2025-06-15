@@ -4,11 +4,20 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MellowInputComponent } from '../mellow-input/mellow-input.component';
 import { FormItem } from '../../models/form-item.model';
 import { TranslocoModule } from '@ngneat/transloco';
+import { PasswordModule } from 'primeng/password';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MellowInputComponent, TranslocoModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MellowInputComponent,
+    TranslocoModule,
+    PasswordModule,
+    FloatLabelModule,
+  ],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss',
 })
@@ -19,6 +28,9 @@ export class DynamicFormComponent {
   /** The configuration array that defines the form's fields. */
   @Input() formItems: FormItem[] = [];
 
+  ngOnInit() {
+    console.log(this.formItems);
+  }
   /**
    * A helper method to get a form control from the form group and cast it to a FormControl.
    * This is used in the template to satisfy TypeScript's strict type checking.
