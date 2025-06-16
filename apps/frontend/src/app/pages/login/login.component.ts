@@ -3,11 +3,13 @@ import { CardModule } from 'primeng/card';
 import { DynamicFormComponent } from '../../shared/components/dynamic-form/dynamic-form.component';
 import { FormItem } from '../../shared/models/form-item.model';
 import { AuthService } from '../../core/auth/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { MessageService } from 'primeng/api';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +29,9 @@ import { TranslocoModule } from '@ngneat/transloco';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private translocoService = inject(TranslocoService);
+  private messageService = inject(MessageService);
+  private router = inject(Router);
 
   loginForm: FormGroup;
   loginFormItems: FormItem[];
@@ -63,10 +68,20 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.invalid) return;
     this.authService.login(this.loginForm.value).subscribe({
-      next: (resp) => {
-        console.log('success');
+      next: () => {
+        this.router.navigate(['/']);
       },
-      error: (err) => console.error(err),
+      error: (err) => {
+        const header = this.translocoService.translate('toast.error');
+        const defaultErrorKey = 'form.errors.genericError';
+        const msgKey = err.status === 401 ? 'form.errors.invalidCredentials' : defaultErrorKey;
+        this.translocoService
+          .selectTranslate(msgKey)
+          .pipe(take(1))
+          .subscribe((translatedMsg) => {
+            this.messageService.add({ severity: 'error', summary: header, detail: translatedMsg });
+          });
+      },
     });
   }
 }
