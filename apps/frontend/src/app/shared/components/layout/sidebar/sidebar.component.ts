@@ -9,6 +9,7 @@ import { ThemeService } from '../../../../theme/theme.service';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../../../../core/auth/auth.service';
 
 interface Langugage {
   name: string;
@@ -34,6 +35,7 @@ interface Langugage {
 export class SidebarComponent {
   themeService = inject(ThemeService);
   public translocoService = inject(TranslocoService);
+  public authService = inject(AuthService);
   public selectedLanguage: any = localStorage.getItem('lang') || 'en';
   languages: Langugage[] = [
     { name: 'English', code: 'en', flag: 'gb' },
@@ -73,5 +75,9 @@ export class SidebarComponent {
 
   changeLang(langCode: string): void {
     this.translocoService.setActiveLang(langCode);
+  }
+
+  logOut() {
+    this.authService.logout();
   }
 }

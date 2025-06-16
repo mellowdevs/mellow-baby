@@ -1,11 +1,15 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpStatus,
   Post,
+  Request,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { AuthService } from './auth.service';
@@ -30,5 +34,14 @@ export class AuthController {
       throw new UnauthorizedException('Invalid Credentials');
     }
     return this.authService.login(user);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('profile')
+  @ApiOperation({ summary: 'Get user profile for logged in user' })
+  @ApiResponse({ status: 200, description: 'Returns user profile' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  async getProfile(@Request() req) {
+    return req.user;
   }
 }
