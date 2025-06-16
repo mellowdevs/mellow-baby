@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { Observable, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 import { RegisterDTO } from '../../pages/register/models/register-dto.model';
 import { Router } from '@angular/router';
 
@@ -52,6 +52,22 @@ export class AuthService {
    */
   isLoggedIn(): boolean {
     return !!localStorage.getItem('mellow_token');
+  }
+
+  /**
+   * A more robust check that asks the backend if the current token is valid.
+   * @returns An Observable that emits `true` for a valid session, `false` otherwise.
+   */
+  checkAuthStatus(): Observable<boolean> {
+    // We use the /auth/profile endpoint because it's protected by our JwtAuthGuard on the backend.
+    return this.http.get(`${this.apiUrl}/auth/profile`).pipe(
+      map(() => true), // If the request succeeds (200 OK), map the response to `true`.
+      catchError(() => {
+        // If the request fails (401 Unauthorized), catch the error and return an observable of `false`.
+        this.logout(); // Log the user out if their token is bad
+        return of(false);
+      }),
+    );
   }
 
   /**
