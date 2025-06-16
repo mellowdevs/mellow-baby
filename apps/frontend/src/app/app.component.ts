@@ -2,9 +2,8 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import { ThemeService } from './theme/theme.service';
+import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
-import { TranslocoService } from '@ngneat/transloco';
 import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './shared/components/layout/sidebar/sidebar.component';
 
@@ -18,6 +17,7 @@ import { SidebarComponent } from './shared/components/layout/sidebar/sidebar.com
     FormsModule,
     DropdownModule,
     SidebarComponent,
+    ToastModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
