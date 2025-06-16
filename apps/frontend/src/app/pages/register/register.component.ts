@@ -6,8 +6,10 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DynamicFormComponent } from '../../shared/components/dynamic-form/dynamic-form.component';
-import { TranslocoModule } from '@ngneat/transloco';
-import { RouterLink } from '@angular/router';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { RouterLink, Router } from '@angular/router';
+import { take } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
@@ -26,17 +28,20 @@ import { RouterLink } from '@angular/router';
 })
 export class RegisterComponent {
   private fb = inject(FormBuilder);
+  private translocoService = inject(TranslocoService);
+  private messageService = inject(MessageService);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   registerForm: FormGroup;
   registerFormItems: FormItem[] = [];
 
   constructor() {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['a', [Validators.required]],
+      email: ['test@example.com', [Validators.required, Validators.email]],
       password: [
-        '',
+        'aaaAAA',
         [
           Validators.required,
           Validators.pattern(
@@ -78,11 +83,35 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
+    let header = '';
+    let msgKey = '';
     this.authService.register(this.registerForm.value).subscribe({
       next: (resp) => {
-        console.log('success');
+        header = this.translocoService.translate('toast.success');
+        msgKey = 'registerPage.successMessage';
+        this.translocoService
+          .selectTranslate(msgKey)
+          .pipe(take(1))
+          .subscribe((translatedMsg) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: header,
+              detail: translatedMsg,
+            });
+            this.router.navigate(['/login']);
+          });
       },
-      error: (err) => console.error(err),
+      error: (err) => {
+        header = this.translocoService.translate('toast.error');
+        const defaultErrorKey = 'form.errors.genericError';
+        msgKey = err.status === 409 ? 'form.errors.emailTaken' : defaultErrorKey;
+        this.translocoService
+          .selectTranslate(msgKey)
+          .pipe(take(1))
+          .subscribe((translatedMsg) => {
+            this.messageService.add({ severity: 'error', summary: header, detail: translatedMsg });
+          });
+      },
     });
   }
 }

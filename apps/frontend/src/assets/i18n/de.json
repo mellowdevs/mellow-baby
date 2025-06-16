@@ -14,7 +14,8 @@
     "passwordLabel": "Passwort",
     "registerButton": "Konto Erstellen",
     "loginPrompt": "Bereits ein Konto?",
-    "loginLink": "Hier anmelden"
+    "loginLink": "Hier anmelden",
+  "successMessage": "Registrierung erfolgreich! Bitte melden Sie sich an, um fortzufahren."
   },
   "form": {
     "labels": {
@@ -29,7 +30,10 @@
       "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
       "passwordInvalid": "Das Passwort ist nicht stark genug.",
       "passwordMustContainNumber": "Das Passwort muss mindestens eine Zahl enthalten.", 
-      "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number."
+      "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number.",
+      "emailTaken": "Diese E-Mail-Adresse wird bereits verwendet.",
+      "invalidCredentials": "Die eingegebene E-Mail-Adresse oder das Passwort ist falsch.",
+      "genericError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
    
     }
   },
@@ -38,5 +42,6 @@
     "medium": "Mittel",
     "strong": "Stark",
     "passwordPrompt": "Geben Sie ein Passwort ein"
-  }
+  },
+  "toast": {  "error": "Fehler", "success": "Erfolg"}
 }
