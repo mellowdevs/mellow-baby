@@ -5,7 +5,9 @@
       [form]="registerForm"
       [formItems]="registerFormItems">
     </app-dynamic-form>
-
+<div class="h-5 text-right" *ngIf="registerForm.hasError('passwordsNotMatching')">
+  <small class="p-error">{{ 'form.errors.passwordsDoNotMatch' | transloco }}</small>
+</div>
     <div class="mt-6">
       <p-button 
         [label]="'registerPage.registerButton' | transloco"
@@ -14,6 +16,7 @@
         styleClass="w-full">
       </p-button>
     </div>
+    
     
     <ng-template pTemplate="footer">
       <div class="text-center mt-4">

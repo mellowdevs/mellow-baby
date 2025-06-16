@@ -1,5 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
 import { FormItem } from '../../shared/models/form-item.model';
 import { CommonModule } from '@angular/common';
@@ -10,6 +18,21 @@ import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { RouterLink, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { MessageService } from 'primeng/api';
+
+export function passwordsMatchValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.get('password')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    // If both fields have a value but they don't match, return an error object.
+    if (password && confirmPassword && password !== confirmPassword) {
+      return { passwordsNotMatching: true };
+    }
+
+    // Otherwise, there is no error.
+    return null;
+  };
+}
 
 @Component({
   selector: 'app-register',
@@ -37,19 +60,23 @@ export class RegisterComponent {
   registerFormItems: FormItem[] = [];
 
   constructor() {
-    this.registerForm = this.fb.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/,
-          ),
+    this.registerForm = this.fb.group(
+      {
+        name: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(
+              /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/,
+            ),
+          ],
         ],
-      ],
-    });
+        confirmPassword: ['', [Validators.required]],
+      },
+      { validators: passwordsMatchValidator() },
+    );
 
     this.registerFormItems = [
       {
@@ -77,6 +104,15 @@ export class RegisterComponent {
         validationMessages: {
           required: 'form.errors.required',
           pattern: 'form.errors.passwordMessage',
+        },
+      },
+      {
+        controlName: 'confirmPassword',
+        label: 'registerPage.confirmPasswordLabel',
+        type: 'password',
+        component: 'input', // Using our standard input for this one
+        validationMessages: {
+          required: 'form.errors.required',
         },
       },
     ];

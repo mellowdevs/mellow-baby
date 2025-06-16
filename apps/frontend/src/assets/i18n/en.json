@@ -15,7 +15,9 @@
     "registerButton": "Create Account",
     "loginPrompt": "Already have an account?",
     "loginLink": "Login here",  
-    "successMessage": "Registration successful! Please log in to continue."
+    "successMessage": "Registration successful! Please log in to continue.",  
+    "confirmPasswordLabel": "Confirm Password"
+
   },
   "form": {
     "labels": {
@@ -33,7 +35,9 @@
       "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.",
       "emailTaken": "This email address is already in use.",
       "invalidCredentials": "The email or password you entered is incorrect.",
-      "genericError": "An unexpected error occurred. Please try again."
+      "genericError": "An unexpected error occurred. Please try again.",
+      "passwordsDoNotMatch": "Passwords do not match."
+
     
     }
   },
