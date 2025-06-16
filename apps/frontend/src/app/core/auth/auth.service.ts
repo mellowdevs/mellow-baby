@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable, tap } from 'rxjs';
 import { RegisterDTO } from '../../pages/register/models/register-dto.model';
+import { Router } from '@angular/router';
 
 interface AuthResponse {
   access_token: string;
@@ -13,6 +14,7 @@ interface AuthResponse {
 export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
+  private router = inject(Router);
 
   /**
    * Sends registers creds to MellowAPI and stores JWT upon success
@@ -42,5 +44,21 @@ export class AuthService {
 
   private saveAccessToken(token: string): void {
     localStorage.setItem('mellow_token', token);
+  }
+
+  /**
+   * Checks if a user token exists in localStorage.
+   * @returns True if the user is considered logged in, otherwise false.
+   */
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('mellow_token');
+  }
+
+  /**
+   * Logs the user out by removing the token and redirecting to the login page.
+   */
+  logout(): void {
+    localStorage.removeItem('mellow_token');
+    this.router.navigate(['/login']);
   }
 }

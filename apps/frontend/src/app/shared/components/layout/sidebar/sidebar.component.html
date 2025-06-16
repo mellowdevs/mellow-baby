@@ -39,6 +39,8 @@
             <div
                 class="flex flex-col items-center justify-between gap-2 p-2  w-20 cursor-pointer"
                 (click)="toggleCallback($event, item)"
+                role="button"
+                tabindex="0"
             >
                 <span [class]="item.icon"></span>
                 <span>
@@ -48,11 +50,21 @@
         </ng-template>
       </p-speeddial>
 
+
+
             <p-button 
         (click)="toggleDarkMode()"
         [icon]="(themeService.isThemeDark$ | async) ? 'pi pi-sun' : 'pi pi-moon'"
         styleClass="p-button-text p-button-rounded"
         aria-label="Toggle Theme">
+      </p-button>
+
+                        <p-button 
+                  *ngIf="authService.isLoggedIn()"
+        (click)="logOut()"
+        [icon]="'pi pi-sign-out'"
+        styleClass="p-button-text p-button-rounded"
+        aria-label="Sign Out">
       </p-button>
 
     </div>
