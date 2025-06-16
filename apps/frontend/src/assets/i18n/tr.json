@@ -14,7 +14,8 @@
     "passwordLabel": "Şifre",
     "registerButton": "Hesap Oluştur",
     "loginPrompt": "Zaten bir hesabın var mı?",
-    "loginLink": "Giriş yap"
+    "loginLink": "Giriş yap",
+  "successMessage": "Kayıt başarılı! Devam etmek için lütfen giriş yapın."
   },
   "form": {
     "labels": {
@@ -29,7 +30,10 @@
       "emailInvalid": "Lütfen geçerli bir e-posta adresi girin.",
       "passwordInvalid": "Şifre yeterince güçlü değil.",
       "passwordMustContainNumber": "Şifre en az bir rakam içermelidir.",
-      "passwordMessage": "Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir."
+      "passwordMessage": "Şifre en az bir büyük harf, bir küçük harf ve bir rakam içermelidir.",
+      "emailTaken": "Bu e-posta adresi zaten kullanılıyor.",
+      "invalidCredentials": "Girdiğiniz e-posta veya şifre yanlış.",
+      "genericError": "Beklenmedik bir hata oluştu. Lütfen tekrar deneyin."
     }
   },
   "primeng": {
@@ -37,5 +41,6 @@
     "medium": "Orta",
     "strong": "Güçlü",
     "passwordPrompt": "Bir şifre girin"
-  }
+  },  
+  "toast": {  "error": "Hata", "success": "Başarılı"}
 }

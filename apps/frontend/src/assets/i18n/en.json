@@ -14,7 +14,8 @@
     "passwordLabel": "Password",
     "registerButton": "Create Account",
     "loginPrompt": "Already have an account?",
-    "loginLink": "Login here"
+    "loginLink": "Login here",  
+    "successMessage": "Registration successful! Please log in to continue."
   },
   "form": {
     "labels": {
@@ -29,8 +30,11 @@
       "emailInvalid": "Please enter a valid email address.",
       "passwordInvalid": "Password is not strong enough.",
       "passwordMustContainNumber": "Password must contain at least one number.",
-      "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number."
-   
+      "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.Password must contain at least one uppercase, one lowercase, and one number.",
+      "emailTaken": "This email address is already in use.",
+      "invalidCredentials": "The email or password you entered is incorrect.",
+      "genericError": "An unexpected error occurred. Please try again."
+    
     }
   },
   "primeng": {
@@ -38,5 +42,6 @@
     "medium": "Medium",
     "strong": "Strong",
     "passwordPrompt": "Enter a password"
-  }
+  },
+  "toast": {"error": "Error", "success": "Success"}
 }
