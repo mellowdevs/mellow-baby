@@ -15,7 +15,9 @@
     "registerButton": "Konto Erstellen",
     "loginPrompt": "Bereits ein Konto?",
     "loginLink": "Hier anmelden",
-  "successMessage": "Registrierung erfolgreich! Bitte melden Sie sich an, um fortzufahren."
+  "successMessage": "Registrierung erfolgreich! Bitte melden Sie sich an, um fortzufahren.",
+    "confirmPasswordLabel": "Passwort bestätigen"
+
   },
   "form": {
     "labels": {
@@ -33,7 +35,9 @@
       "passwordMessage": "Password must contain at least one uppercase, one lowercase, and one number.",
       "emailTaken": "Diese E-Mail-Adresse wird bereits verwendet.",
       "invalidCredentials": "Die eingegebene E-Mail-Adresse oder das Passwort ist falsch.",
-      "genericError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+      "genericError": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+          "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein."
+
    
     }
   },
