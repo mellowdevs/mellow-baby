@@ -1,11 +1,15 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  console.log('ENV!!', process.env);
   const app = await NestFactory.create(AppModule);
   const corsOrigins = process.env.CORS_ORIGINS?.split(',') || [];
+
+  app.useGlobalPipes(new ValidationPipe());
 
   app.enableCors({
     origin: (origin, callback) => {
@@ -31,6 +35,7 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .addTag('auth', 'Authentication related endpoints')
     .addTag('users', 'User management endpoints')
+    .addTag('babies', 'Babies endpoints')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
