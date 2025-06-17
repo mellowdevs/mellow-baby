@@ -1,7 +1,7 @@
 
 <div class="flex flex-col">
   <p-floatlabel variant="on">
-        <ng-container [ngSwitch]="component" [formGroup]="fg">
+        <ng-container [ngSwitch]="type" [formGroup]="fg">
 
     <input *ngSwitchDefault
       pInputText
@@ -10,6 +10,7 @@
       [formControl]="control"
       [class.p-invalid]="control.invalid && control.touched"
       class="w-full"
+
     />
 
       <p-password *ngSwitchCase="'password'" 
@@ -24,6 +25,7 @@
           [promptLabel]="'form.labels.promptLabel' | transloco"
           [inputStyleClass]="control.invalid && control.touched ? 'w-full p-invalid' :  'w-full'"
           [styleClass]="'w-full'"
+          [feedback]="component === 'password'"
         ></p-password>
     <label [for]="id">{{ label | transloco }}</label>
         </ng-container>

@@ -4,8 +4,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { authGuard } from './core/guards/auth.guard';
 import { loginRedirectGuard } from './auth/login-redirect.guard';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MainLayoutComponent } from './shared/components/layout/main-layout/main-layout.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [loginRedirectGuard] },
