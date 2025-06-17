@@ -48,6 +48,7 @@ export class LoginComponent {
         label: 'loginPage.emailLabel',
         type: 'email',
         id: 'login-email',
+        component: 'input',
         validationMessages: {
           required: 'form.errors.required',
           email: 'form.errors.emailInvalid',
@@ -58,6 +59,7 @@ export class LoginComponent {
         label: 'loginPage.passwordLabel',
         type: 'password',
         id: 'login-password',
+        component: 'input',
         validationMessages: {
           required: 'form.errors.required',
         },
