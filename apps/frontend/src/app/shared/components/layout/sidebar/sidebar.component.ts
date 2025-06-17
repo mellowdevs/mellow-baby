@@ -10,6 +10,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../../../core/auth/auth.service';
+import { LogoComponent } from '../../logo/logo.component';
 
 interface Langugage {
   name: string;
@@ -28,6 +29,7 @@ interface Langugage {
     RouterLink,
     SplitButtonModule,
     SpeedDialModule,
+    LogoComponent,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',

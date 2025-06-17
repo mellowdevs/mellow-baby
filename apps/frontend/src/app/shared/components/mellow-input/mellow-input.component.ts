@@ -36,6 +36,5 @@ export class MellowInputComponent {
 
   ngOnInit() {
     this.fg = new FormGroup({ [this.controlName]: new FormControl('') });
-    console.log(this.type, this.component);
   }
 }

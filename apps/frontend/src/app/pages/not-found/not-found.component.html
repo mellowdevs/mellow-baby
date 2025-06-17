@@ -1,1 +1,20 @@
-<p>not-found works!</p>
+<div class="flex flex-col items-center justify-center text-center h-full" *transloco="let t; read: 'notFoundPage'">
+
+  <app-logo></app-logo>
+
+  <div class="text-primary text-8xl font-bold mt-4">404</div>
+
+  <h1 class="text-4xl font-bold mt-4">{{ t('header') }}</h1>
+
+  <p class="text-lg mt-2 text-surface-600 dark:text-surface-300 max-w-md">
+    {{ t('message') }}
+  </p>
+
+  <p-button 
+    [label]="t('actionButton')" 
+    icon="pi pi-home" 
+    styleClass="mt-8"
+    routerLink="/dashboard">
+  </p-button>
+
+</div>

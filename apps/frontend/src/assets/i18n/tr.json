@@ -46,5 +46,10 @@
     "strong": "Güçlü",
     "passwordPrompt": "Bir şifre girin"
   },  
-  "toast": {  "error": "Hata", "success": "Başarılı"}
+  "toast": {  "error": "Hata", "success": "Başarılı"},
+   "notFoundPage": {
+    "header": "Sayfa Bulunamadı",
+    "message": "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmış olabilir.",
+    "actionButton": "Anasayfaya Git"
+  }
 }

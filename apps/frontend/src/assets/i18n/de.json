@@ -47,5 +47,10 @@
     "strong": "Stark",
     "passwordPrompt": "Geben Sie ein Passwort ein"
   },
-  "toast": {  "error": "Fehler", "success": "Erfolg"}
+  "toast": {  "error": "Fehler", "success": "Erfolg"},
+  "notFoundPage": {
+    "header": "Seite nicht gefunden",
+    "message": "Entschuldigung, die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
+    "actionButton": "Zum Dashboard gehen"
+  }
 }
