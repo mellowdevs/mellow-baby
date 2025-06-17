@@ -31,10 +31,11 @@ export class MellowInputComponent {
   @Input() id: string = '';
   @Input() label: string = '';
   @Input() type: string = 'text';
-  @Input() component?: string = '';
+  @Input() component?: string = 'input';
   @Input() validationMessages: { [key: string]: string } = {};
 
   ngOnInit() {
     this.fg = new FormGroup({ [this.controlName]: new FormControl('') });
+    console.log(this.type, this.component);
   }
 }

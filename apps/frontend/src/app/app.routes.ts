@@ -4,6 +4,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { authGuard } from './core/guards/auth.guard';
 import { loginRedirectGuard } from './auth/login-redirect.guard';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [loginRedirectGuard] },
@@ -12,5 +13,5 @@ export const routes: Routes = [
   // Add a default route to redirect to the dashboard
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   // Add a wildcard route for any other path
-  { path: '**', redirectTo: '/dashboard' },
+  { path: '**', component: NotFoundComponent },
 ];
