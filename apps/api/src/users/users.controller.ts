@@ -9,7 +9,7 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -26,6 +26,15 @@ export class UsersController {
   @ApiOperation({ summary: 'Create a new user in DB.' })
   @ApiResponse({ status: 200, description: 'User created succesfully' })
   @ApiResponse({ status: 409, description: 'Conflict. A user with this email already exists.' })
+  @ApiBody({
+    type: CreateUserDto,
+    examples: {
+      a: {
+        summary: 'New User Registration',
+        value: { name: 'Melike', email: 'melike@example.com', password: 'Password123' },
+      },
+    },
+  })
   create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.usersService.create(createUserDto);
   }

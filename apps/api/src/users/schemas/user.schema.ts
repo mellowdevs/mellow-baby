@@ -4,6 +4,11 @@ import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
 
+export enum UnitSystem {
+  METRIC = 'metric', // ml
+  IMPERIAL = 'imperial', // oz
+}
+
 @Schema({ timestamps: true })
 export class User {
   @Prop({ required: true })
@@ -14,6 +19,13 @@ export class User {
 
   @Prop({ required: true })
   password: string;
+
+  @Prop({
+    type: String,
+    enum: Object.values(UnitSystem),
+    default: UnitSystem.METRIC,
+  })
+  preferredUnitSystem: UnitSystem;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
