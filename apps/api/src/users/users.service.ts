@@ -31,8 +31,7 @@ export class UsersService {
     if (existingUser) throw new ConflictException('Email already exists.');
 
     // If not, save the new user.
-    const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+    return this.userModel.create(createUserDto);
   }
 
   findAll() {

@@ -18,8 +18,7 @@ export class BabiesService {
    */
   create(createBabyDto: CreateBabyDto, userId: string): Promise<Baby> {
     const babyData = { ...createBabyDto, user: userId };
-    const createdBaby = new this.babyModel(babyData);
-    return createdBaby.save();
+    return this.babyModel.create(babyData);
   }
 
   /**

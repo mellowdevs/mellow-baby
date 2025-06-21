@@ -49,7 +49,7 @@ export class Diaper {
    * The type of diaper change (wet, dirty, or both).
    */
   @Prop({ required: true, enum: Object.values(DiaperType) })
-  type: DiaperType;
+  diaperType: DiaperType;
 
   /**
    * Any additional notes about the diaper change.
