@@ -40,7 +40,7 @@ export class Feeding {
    * @memberof Feeding
    */
   @Prop({ required: true, enum: Object.values(FeedingType) })
-  type: FeedingType;
+  feedingType: FeedingType;
 
   /**
    * The exact time the feeding session started.

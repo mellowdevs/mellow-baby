@@ -37,8 +37,7 @@ export class ActivitiesService {
   async createSleep(dto: CreateActivityDto, babyId: string, userId: string): Promise<Sleep> {
     await this._verifyBabyOwnership(babyId, userId);
     const sleepData = { ...dto, baby: new Types.ObjectId(babyId) };
-    const createdSleep = new this.sleepModel(sleepData);
-    return createdSleep.save();
+    return this.sleepModel.create(sleepData);
   }
   /**
    * Creates a new feeding record for a given baby after verifying ownership.
@@ -48,9 +47,8 @@ export class ActivitiesService {
    */
   async createFeeding(dto: CreateActivityDto, babyId: string, userId: string): Promise<Feeding> {
     await this._verifyBabyOwnership(babyId, userId);
-    const feedingData = { ...dto, type: dto.feedingType, baby: new Types.ObjectId(babyId) };
-    const createdFeeding = new this.feedingModel(feedingData);
-    return createdFeeding.save();
+    const feedingData = { ...dto, baby: new Types.ObjectId(babyId) };
+    return this.feedingModel.create(feedingData);
   }
 
   /**
@@ -61,9 +59,8 @@ export class ActivitiesService {
    */
   async createDiaper(dto: CreateActivityDto, babyId: string, userId: string): Promise<Diaper> {
     await this._verifyBabyOwnership(babyId, userId);
-    const diaperData = { ...dto, type: dto.diaperType, baby: new Types.ObjectId(babyId) };
-    const createdDiaper = new this.diaperModel(diaperData);
-    return createdDiaper.save();
+    const diaperData = { ...dto, baby: new Types.ObjectId(babyId) };
+    return this.diaperModel.create(diaperData);
   }
 
   /**
@@ -71,28 +68,17 @@ export class ActivitiesService {
    * @param userId - The ID of the parent user.
    */
   async findAllForUser(userId: string): Promise<any[]> {
-    console.log(`--- Starting findAllForUser for userId: ${userId}`);
-
     const userBabies = await this.babyModel.find({ user: userId }).select('_id').exec();
-
-    console.log('Found babies for this user:', userBabies);
 
     const babyIds = userBabies.map((b) => b._id);
 
-    console.log(`Extracted babyIds to search for: [${babyIds.join(', ')}]`);
-
     if (babyIds.length === 0) {
-      console.log('No babies found for this user, returning empty array.');
       return [];
     }
 
     const sleeps = await this.sleepModel.find({ baby: { $in: babyIds } }).exec();
     const feedings = await this.feedingModel.find({ baby: { $in: babyIds } }).exec();
     const diapers = await this.diaperModel.find({ baby: { $in: babyIds } }).exec();
-
-    console.log(
-      `Found ${sleeps.length} sleeps, ${feedings.length} feedings, ${diapers.length} diapers.`,
-    );
 
     const allActivities = [...sleeps, ...feedings, ...diapers];
 
