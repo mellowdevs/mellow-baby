@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Baby, BabySchema } from 'src/babies/schemas/baby.schema';
 
 import { ActivitiesController } from './activities.controller';
 import { ActivitiesService } from './activities.service';
 import { Diaper, DiaperSchema } from './schemas/diaper.schema';
 import { Feeding, FeedingSchema } from './schemas/feeding.schema';
 import { Sleep, SleepSchema } from './schemas/sleep.schema';
+import { Baby, BabySchema } from '../babies/schemas/baby.schema';
 
 // Define the Mongoose feature module once as a constant for reusability
 const mongooseFeatures = MongooseModule.forFeature([
