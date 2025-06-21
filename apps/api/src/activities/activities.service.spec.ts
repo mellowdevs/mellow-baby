@@ -1,4 +1,4 @@
-import { ForbiddenException } from '@nestjs/common';
+import { ForbiddenException, NotFoundException } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model, Types } from 'mongoose';
@@ -149,32 +149,54 @@ describe('ActivitiesService', () => {
       expect(result[0]).toHaveProperty('start');
     });
   });
-
   describe('remove', () => {
-    it('should call findByIdAndDelete on the correct model', async () => {
-      const activityId = new Types.ObjectId().toHexString();
-      const babyId = new Types.ObjectId().toHexString();
-      const userId = new Types.ObjectId().toHexString();
-      const mockActivity = { _id: activityId, baby: babyId };
+    const activityId = new Types.ObjectId().toHexString();
+    const babyId = new Types.ObjectId().toHexString();
+    const userId = new Types.ObjectId().toHexString();
+    const mockActivity = { _id: activityId, baby: babyId, toString: () => babyId };
 
-      // Setup mock chain for finding the activity to delete
+    it('should throw NotFoundException if activity does not exist', async () => {
+      // For this test, make findById return null
+      (sleepModel.findById as jest.Mock).mockReturnValue({
+        exec: jest.fn().mockResolvedValue(null),
+      });
+
+      // We expect the service call to be rejected with a NotFoundException
+      await expect(service.remove(activityId, 'sleep', userId)).rejects.toThrow(NotFoundException);
+    });
+
+    it('should throw ForbiddenException if the user does not own the baby', async () => {
+      // For this test, the activity is found...
       (sleepModel.findById as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(mockActivity),
       });
 
-      // Setup mock chain for the ownership check
+      // ...but the ownership check on the baby fails.
+      (babyModel.findOne as jest.Mock).mockReturnValue({
+        exec: jest.fn().mockResolvedValue(null),
+      });
+
+      // We expect the service call to be rejected with a ForbiddenException
+      await expect(service.remove(activityId, 'sleep', userId)).rejects.toThrow(ForbiddenException);
+    });
+
+    it('should call findByIdAndDelete on the correct model on success', async () => {
+      // For this test, both the activity find and the ownership check succeed.
+      (sleepModel.findById as jest.Mock).mockReturnValue({
+        exec: jest.fn().mockResolvedValue(mockActivity),
+      });
       (babyModel.findOne as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(true),
       });
 
-      // Setup mock chain for the delete operation
+      // We also need to mock the delete operation itself
       (sleepModel.findByIdAndDelete as jest.Mock).mockReturnValue({
         exec: jest.fn().mockResolvedValue(true),
       });
 
       await service.remove(activityId, 'sleep', userId);
 
-      // Expect that the delete function was called on the correct model
+      // We expect that the delete function was called on the correct model
       expect(sleepModel.findByIdAndDelete).toHaveBeenCalledWith(activityId);
     });
   });
