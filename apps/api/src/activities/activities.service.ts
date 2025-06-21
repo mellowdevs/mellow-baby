@@ -1,13 +1,12 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Baby, BabyDocument } from 'src/babies/schemas/baby.schema';
 
 import { CreateActivityDto } from './dto/create-activity.dto';
-import { UpdateActivityDto } from './dto/update-activity.dto';
 import { Diaper, DiaperDocument } from './schemas/diaper.schema';
 import { Feeding, FeedingDocument } from './schemas/feeding.schema';
 import { Sleep, SleepDocument } from './schemas/sleep.schema';
+import { Baby, BabyDocument } from '../babies/schemas/baby.schema';
 
 @Injectable()
 export class ActivitiesService {
